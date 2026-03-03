@@ -12,12 +12,18 @@ repositories {
 }
 
 ext {
-    set('springAiVersion', "1.1.2")
+    set('springAiVersion', "2.0.0-M2")
 }
 
 dependencyManagement {
     imports {
         mavenBom "org.springframework.ai:spring-ai-bom:$springAiVersion"
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -30,6 +36,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.ai:spring-ai-starter-model-ollama'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 bootJar {

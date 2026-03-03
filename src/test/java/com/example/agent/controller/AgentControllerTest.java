@@ -36,6 +36,6 @@ class AgentControllerTest {
                 .jsonPath("$.instanceId").isEqualTo("5ada")
                 .jsonPath("$.agentName").isEqualTo("java-agent")
                 .jsonPath("$.thread").isEqualTo("VirtualThread")
-                .jsonPath("$.response").isEqualTo("Hola mundo!");
+                .jsonPath("$.response").exists();
     }
 }

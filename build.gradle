@@ -5,7 +5,7 @@ plugins {
     id 'jacoco'
 }
 
-group = 'com.example'
+group = 'com.example.agent'
 version = '1.0.0'
 
 repositories {

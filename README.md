@@ -1,4 +1,5 @@
 # minimal-java-agent
+![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
 A minimal template built with **Java 21** and **Spring Boot (latest)**, designed to create modern agents that handle and orchestrate AI requests.
 

@@ -21,6 +21,6 @@ public class AgentController {
         var instanceId = agentInfo.getInstanceId();
         var thread = agentInfo.getThreadInfo();
         var agentName = agentInfo.getAgentName();
-        return Mono.just(new ChatResponse(instanceId, thread, agentName, message));
+        return Mono.just(new ChatResponse(instanceId, agentName, thread, message));
     }
 }

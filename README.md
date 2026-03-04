@@ -20,14 +20,17 @@ orchestrate AI requests with high performance and efficiency.
 minimal-java-agent/
 ├── src/
 │   ├── main/
-│   │   └── java/com/example/agent/
-│   │       ├── AgentApplication.java
-│   │       ├── controller/
-│   │       │   └── AgentController.java
-│   │       ├── component/
-│   │       │   └── AgentInfoProvider.java
-│   │       └── model/
-│   │           └── ChatResponse.java
+│   │   ├── java/com/example/agent/
+│   │   │   ├── AgentApplication.java
+│   │   │   ├── controller/
+│   │   │   │   └── AgentController.java
+│   │   │   ├── component/
+│   │   │   │   └── AgentInfoProvider.java
+│   │   │   └── model/
+│   │   │       └── ChatResponse.java
+│   │   └── resources/
+│   │       └── prompts/
+│   │           └── system.st
 │   └── test/
 │       └── java/com/example/agent/
 │           ├── AgentApplicationTest.java
@@ -50,7 +53,7 @@ minimal-java-agent/
 - Gradle (optional, wrapper IS NOT included)
 - Docker (optional, for containerized deployment)
 
-- No Gradle wrapper is included — the project expects you to have Gradle installed globally. This keeps the repository even smaller and lets you use your preferred Gradle version.
+> No Gradle wrapper is included — the project expects you to have Gradle installed globally. This keeps the repository even smaller and lets you use your preferred Gradle version.
 
 
 ### Run locally

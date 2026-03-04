@@ -3,6 +3,8 @@ package com.example.agent.controller;
 import com.example.agent.component.AgentInfoProvider;
 import com.example.agent.model.ChatResponse;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,9 +17,11 @@ public class AgentController {
     private final ChatClient chatClient;
     private final AgentInfoProvider agentInfo;
 
-    public AgentController(ChatClient.Builder chatClientBuilder, AgentInfoProvider agentInfo) {
-        this.chatClient = chatClientBuilder.build();
+    public AgentController(ChatClient.Builder chatClientBuilder, AgentInfoProvider agentInfo, @Value("classpath:prompts/system.st") Resource systemPromptResource) {
         this.agentInfo = agentInfo;
+        this.chatClient = chatClientBuilder
+                .defaultSystem(systemPromptResource)
+                .build();
     }
 
     @PostMapping("/api/chat")

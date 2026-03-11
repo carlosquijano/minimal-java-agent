@@ -99,7 +99,49 @@ docker build -t minimal-java-agent .
 # Run container
 docker run -p 8080:8080 minimal-java-agent
 ```
+## Customizing the Agent's Behavior
 
+The system prompt defines your agent's personality, role, and purpose.
+This template loads it in two layers, concatenated in order at startup:
+
+| Layer | Source | When loaded |
+|-------|--------|-------------|
+| **Base** | `src/main/resources/prompts/system.st` | Always — defines the agent's core identity |
+| **Extension** | File path set via `AGENT_SYSTEM_PROMPT_PATH` | When the env var is set — appends role-specific behavior |
+
+Separating the two layers gives you flexibility at different levels:
+
+- **Base prompt** — changing it requires modifying the source and rebuilding the image.
+  Use it for stable, structural instructions that define what kind of agent this is.
+- **Extension prompt** — injected at runtime from a mounted file, no rebuild needed.
+  Use it for role-specific behavior that may vary per deployment or instance.
+
+### Example: single specialized agent
+```bash
+docker run -p 8080:8080 \
+  -e AGENT_SYSTEM_PROMPT_PATH=file:/app/prompts/extension.st \
+  -v ./my-prompts:/app/prompts:ro \
+  minimal-java-agent
+```
+
+### Example: multiple agents from the same image
+```yaml
+agent-a:
+  image: minimal-java-agent
+  environment:
+    AGENT_SYSTEM_PROMPT_PATH: file:/app/prompts/extension.st
+  volumes:
+    - ./prompts/agent-a:/app/prompts:ro
+
+agent-b:
+  image: minimal-java-agent
+  environment:
+    AGENT_SYSTEM_PROMPT_PATH: file:/app/prompts/extension.st
+  volumes:
+    - ./prompts/agent-b:/app/prompts:ro
+```
+
+> If `AGENT_SYSTEM_PROMPT_PATH` is not set, only the base prompt is used. The agent starts normally either way.
 
 ## API Endpoints
 

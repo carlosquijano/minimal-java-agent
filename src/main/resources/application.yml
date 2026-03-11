@@ -19,3 +19,5 @@ management:
     web:
       exposure:
         include: health,info
+agent:
+  system-prompt-path: ${AGENT_SYSTEM_PROMPT_PATH:classpath:prompts/system.st}

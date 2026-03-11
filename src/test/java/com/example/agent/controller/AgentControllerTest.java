@@ -1,6 +1,5 @@
 package com.example.agent.controller;
 
-
 import com.example.agent.component.AgentInfoProvider;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
